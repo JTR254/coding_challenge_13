@@ -7,7 +7,7 @@ function addEmployee (name, position) { // creates function that adds Employee t
     const employeeContainer = document.getElementById ("employeeContainer");
     
     const employeeCard = document.createElement("div"); // creates new "div" element
-    employeeCard.setAttribute("class", "metric-card");
+    employeeCard.setAttribute("class", "employee-card");
 
     const heading = document.createElement("h2"); // employee's name appears in a heading format
     heading.textContent = name;
@@ -28,3 +28,12 @@ function addEmployee (name, position) { // creates function that adds Employee t
 
     employeeContainer.appendChild(employeeCard); // adds the child element (employeeCard) to the parent element (employeeContainer)
 }
+
+// Task 3 - Bulk Update on Employee Cards
+
+const employeeCards = document.querySelectorAll(".employee-card"); // "selects .employee-card"
+const employeeCardsArray = Array.from(employeeCards);
+
+employeeCardsArray.forEach(employeeCard => { // for each employee card, update the border style to green
+    employeeCard.style.border = "2px solid rgb(27, 177, 16)"
+});
