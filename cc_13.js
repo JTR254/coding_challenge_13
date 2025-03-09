@@ -18,7 +18,8 @@ function addEmployee (name, position) { // creates function that adds Employee t
     const removeButton = document.createElement("button"); // creates remove button to remove the employee card
     removeButton.setAttribute ("class", "remove-btn");
     removeButton.textContent = "Remove"; // puts the word "removed" inside the button
-    removeButton.addEventListener("click", () => { // function so when remove is clicked, the card disappears.\
+    removeButton.addEventListener("click", (event) => { // function so when remove is clicked, the card disappears.
+         event.stopPropagation() // Task 4 - makes it so a targeted card is removed
         employeeContainer.removeChild(employeeCard);
     });
 
@@ -27,13 +28,25 @@ function addEmployee (name, position) { // creates function that adds Employee t
     employeeCard.appendChild(removeButton); // adds the child element (removeButton) to the parent element (employeeCard)
 
     employeeContainer.appendChild(employeeCard); // adds the child element (employeeCard) to the parent element (employeeContainer)
-}
+    updateEmployeeCardBorder();// Task 3 - put function in this function in order to get the green borders to work
+};
 
 // Task 3 - Bulk Update on Employee Cards
 
+function updateEmployeeCardBorder (){
 const employeeCards = document.querySelectorAll(".employee-card"); // "selects .employee-card"
 const employeeCardsArray = Array.from(employeeCards);
-
 employeeCardsArray.forEach(employeeCard => { // for each employee card, update the border style to green
+    
     employeeCard.style.border = "2px solid rgb(27, 177, 16)"
+    });
+}
+addEmployee("Michael Jordan", "Accountant"); //added preexisting cards so the updated border has something to update
+addEmployee("Stephen Curry", "Manager");
+
+// Task 4 - Employee Card Removal with Event Bubbling
+
+employeeContainer.addEventListener("click", () => {
+    console.log("Employee card was clicked!"); // adds event bubbling so when the container is clicked, it says it was clicked in the console.
 });
+
