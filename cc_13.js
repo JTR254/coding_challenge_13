@@ -23,9 +23,28 @@ function addEmployee (name, position) { // creates function that adds Employee t
         employeeContainer.removeChild(employeeCard);
     });
 
+    const editButton = document.createElement("button"); // Task 5; creates an edit button
+    editButton.setAttribute("class", "edit-btn");
+    editButton.textContent = "Edit"; // puts the word edit in the button
+    editButton.addEventListener("click", () => {
+    editTicket(employeeCard, heading, paragraph);
+    });
+
+    const saveButton = document.createElement("button"); // Task 5; creates a save button
+    saveButton.textContent = "Save"; // puts the word save in the button
+    saveButton.addEventListener("click", () => {
+    saveTicket(employeeCard, heading, paragraph);
+    });
+
     employeeCard.appendChild(heading); // adds the child element (heading) to the parent element (employeeCard)
     employeeCard.appendChild(paragraph); // adds the child element (paragraph) to the parent element (employeeCard)
     employeeCard.appendChild(removeButton); // adds the child element (removeButton) to the parent element (employeeCard)
+    employeeCard.appendChild(document.createElement("br")); // adds a line break
+    employeeCard.appendChild(document.createElement("br")); // adds a line break
+    employeeCard.appendChild(editButton)
+    employeeCard.appendChild(document.createElement("br")); // adds a line break
+    employeeCard.appendChild(document.createElement("br")); // adds a line break
+    employeeCard.appendChild(saveButton); // Task 5 - adds a save button
 
     employeeContainer.appendChild(employeeCard); // adds the child element (employeeCard) to the parent element (employeeContainer)
     updateEmployeeCardBorder();// Task 3 - put function in this function in order to get the green borders to work
@@ -47,6 +66,8 @@ addEmployee("Stephen Curry", "Manager");
 // Task 4 - Employee Card Removal with Event Bubbling
 
 employeeContainer.addEventListener("click", () => {
-    console.log("Employee card was clicked!"); // adds event bubbling so when the container is clicked, it says it was clicked in the console.
+    console.log("Employee card was clicked!"); // when the container is clicked, it says it was clicked in the console.
 });
 
+// Task 5 -  Inline Editing for Support Tickets
+    // done above
